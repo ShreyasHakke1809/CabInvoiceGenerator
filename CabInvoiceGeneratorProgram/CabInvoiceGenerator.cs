@@ -25,6 +25,23 @@ namespace CabInvoiceGeneratorProgram
                 return Math.Max(ride.MINIMUM_FAIR, totalFair);
             }
         }
-       
+        public double CalculateFair(Ride[] rides)
+        {
+            double totalFair = 0;
+            foreach (Ride ride in rides)
+            {
+                totalFair += CalculateFair(ride);
+            }
+            return totalFair;
+        }
+        public InvoiceSummary CalculateFair3(Ride[] rides)
+        {
+            double totalFair = 0;
+            foreach (Ride ride in rides)
+            {
+                totalFair += CalculateFair(ride);
+            }
+            return new InvoiceSummary(totalFair, rides.Length);
+        }
     }
 }
